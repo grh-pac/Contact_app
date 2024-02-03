@@ -1,0 +1,67 @@
+<%- include('layout/header')  %>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card" style="background-color: #1E3248; overflow: hidden; border: #3f6691;  color:white; ">
+          <div class="card-header bg-primary">Edit</div>
+          <div class="card-body">
+            <form action="/update/<%= user._id  %>" method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  placeholder="Entrez votre nom d'utilisateur"
+                  name="username"
+                  value="<%= user.username  %>"
+                />
+              </div>
+              <div class="form-group">
+                <label for="phoneNumber">Numéro de téléphone</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phoneNumber"
+                  placeholder="Entrez votre numéro de téléphone"
+                  name="phone"
+                  value="<%=user.phoneNumber  %>"
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">E-mail</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="Entrez votre adresse e-mail"
+                  name="email"
+                  value="<%= user.email %>"
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="Entrez votre mot de passe"
+                  name="password"
+                  value="12345" readonly disabled
+                />
+              </div>
+              <div class="mb-3">
+                <label for="image" class="form-label">Sélectionner une image</label>
+                <input type="file" class="form-control" id="image" name="image" />
+                <img src="/uploads/<%= user.image %>" width="100" alt="" class="img-thumbnail mt-1">
+            </div>
+            <input type="hidden" name="old_image" value="/uploads/<%=user.image  %>">
+              <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

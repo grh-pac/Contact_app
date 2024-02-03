@@ -1,0 +1,58 @@
+<%- include('layout/header') %>
+<style>
+    /* Vos styles personnalisés */
+    .my-card {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    /* Annuler les marges et les paddings de card-body */
+    .my-card .card-body {
+        padding: 0; /* Annuler le padding */
+        margin: 0; /* Annuler la marge */
+        color: #333;
+    }
+</style>
+<div class="container mt-5">
+    <% if (message) { %>
+        <div class="alert alert-dismissible fade show alert-<%= message.type %>" role="alert">
+            <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+            <strong><%= message.message %></strong>
+        </div>
+    <% } %>
+    <div class="row">
+        <% users.forEach(user => { %>
+            <div class="col-md-3" >
+                <div class="card my-card" style="background-color: #1E3248; overflow: hidden; border: #3f6691;  ">
+                    <div class="card-body" style="background-color: #1E3248; overflow: hidden; border:#1E3248;">
+                        <div class="">
+                            <img src="/uploads/<%= user.image %>"
+                                style="width: 80px; height: 80px; object-fit: cover;"
+                                class="rounded-circle mx-auto d-block" alt="User Icon" />
+                        </div>
+                      <div class="bg-dark" style="border-radius:  50% 50% 0 0;">
+                        <h5 class="text-center mt-3" style="color: white;"><%= user.username %></h5>
+                        <p class="text-center "style="color: white;" >Phone Number: <%= user.phoneNumber %></p>
+                        <a class="email text-center ml-3" href="<%= user.email %>"><%= user.email %></a>
+                        <div class="m-3">
+                            <td>
+                                <a href="/edit/<%= user._id %>" class="btn btn-primary"><i class="bi bi-pen-fill">Edit</i></a>
+                            </td>
+                            <td>
+                                <a href="/delete/<%= user._id %>" class="btn btn-danger"><i class="bi bi-trash3">Delete</i></a>
+                            </td>
+                        </div>
+                    </div>
+                      </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+<script src="../assets/js/swiper-bundle.min.js"></script>
+
+<!--=============== MAIN JS ===============-->
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

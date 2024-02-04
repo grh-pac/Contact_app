@@ -4,6 +4,7 @@ const User = require('../models/user');
 const multer = require('multer');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
 const ensureAuthenticated = passport.ensureAuthenticated;
 
 // image
@@ -149,6 +150,33 @@ router.get('/delete/:id', async (req, res) => {
         res.status(500).send('Erreur lors de suppression');
     }
 });
+
+router.get('/contact_us', (req, res) => {
+    res.render('contact');
+});
+router.post('/contact', async(req, res) => {
+    const {email,subject, message,} = req.body
+
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'grishcom23@gmail.com',
+            pass: 'vnxm wzvn kwzu hhod'
+        }
+
+    });
+
+    const mailOptions = {
+        from: email, // Utilisation de l'e-mail fourni dans le formulaire comme expéditeur
+        to: 'grishcom23@gmail.com', //
+        subject: subject,
+        text: `Email: ${email}\n\nMessage:\n${message}`
+    };
+    await transporter.sendMail(mailOptions);
+
+    res.send('Message envoyé avec succès !');
+
+})
 
 
 module.exports = router;

@@ -1,0 +1,52 @@
+<%- include('layout/header')  %>
+
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card" style="background-color: #1E3248; overflow: hidden; border: #3f6691;  color:white; ">
+          <div class="card-header bg-primary">Contactez-nous</div>
+          <div class="card-body">
+            <form action="/contact" method="post">
+              <div class="form-group">
+                <label for="email">Votre Email :</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="Entrez Votre Address Email"
+                  name="email"
+                />
+              </div>
+              <div class="form-group">
+                <label for="subject">Sujet :</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="subject"
+                  placeholder="Entrez votre Sujet"
+                  name="subject"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label for="message">Votre Message :</label>
+                <textarea
+                  type="textarea"
+                  class="form-control"
+                  id="message"
+                  placeholder="Entrez votre Message"
+                  name="message"
+                  style="height: 200px;"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Envoyer</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+

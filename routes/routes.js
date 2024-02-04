@@ -151,7 +151,7 @@ router.get('/delete/:id', async (req, res) => {
     }
 });
 
-router.get('/contact_us', (req, res) => {
+router.get('/contact_us',ensureAuthenticated, (req, res) => {
     res.render('contact');
 });
 router.post('/contact', async(req, res) => {
@@ -160,15 +160,15 @@ router.post('/contact', async(req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'grishcom23@gmail.com',
-            pass: 'vnxm wzvn kwzu hhod'
+            user: process.env.EMAIL,
+            pass: process.env.SECRETPASSWORD
         }
 
     });
 
     const mailOptions = {
         from: email, // Utilisation de l'e-mail fourni dans le formulaire comme expéditeur
-        to: 'grishcom23@gmail.com', //
+        to: process.env.EMAIL, //
         subject: subject,
         text: `Email: ${email}\n\nMessage:\n${message}`
     };
